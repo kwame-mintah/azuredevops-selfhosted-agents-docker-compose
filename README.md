@@ -12,7 +12,7 @@ Launch self-hosted agents in Azure DevOps using docker-compose. Although a guide
 ## Usage
 
 1. Clone the repository and navigate to the directory,
-2. Open the `.env` file and assign environment variable values,
+2. Copy `.env.example` and create a new `.env` file and assign environment variable values,
 3. Build the agent docker image:
 
    `docker build -t dockeragent:latest .`
@@ -31,14 +31,14 @@ Starting the services will launch one agent and one deployment agent and should 
 
 The following environment variables are used for the services.
 
-| Environment variable | Description                                                                                                                              | Default value                 | Required? |
-| -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------- | --------- |
-| AZP_URL              | The URL of the Azure DevOps or Azure DevOps Server instance.                                                                             | https://dev.azure.com/k-space | Yes       |
-| AZP_TOKEN            | Personal Access Token (PAT) with Agent Pools (read, manage) scope, created by a user who has permission to configure agents, at AZP_URL. | N/A                           | Yes       |
-| AZP_AGENT_NAME       | Agent name.                                                                                                                              | The container hostname        | Optional  |
-| AZP_POOL             | Agent pool name.                                                                                                                         | Default                       | Optional  |
-| AZP_WORK             | Work directory                                                                                                                           | `_work`                       | No        |
-| DEPLOYMENT_AGENT     | Indicate if the agent should be configured as a deployment agent by setting the value as `"true"`                                        | N/A                           | Optional  |
-| DEPLOYMENT_POOLNAME  | The deployment pool that the agent should be added to, if `DEPLOYMENT_AGENT` value is `"true"`                                           | N/A                           | Optional  |
+| Environment variable | Description                                                                                                                              | Default value          | Required? |
+| -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- | ---------------------- | --------- |
+| AZP_URL              | The URL of the Azure DevOps or Azure DevOps Server instance.                                                                             | N/A                    | Yes       |
+| AZP_TOKEN            | Personal Access Token (PAT) with Agent Pools (read, manage) scope, created by a user who has permission to configure agents, at AZP_URL. | N/A                    | Yes       |
+| AZP_AGENT_NAME       | Agent name.                                                                                                                              | The container hostname | Optional  |
+| AZP_POOL             | Agent pool name.                                                                                                                         | Default                | Optional  |
+| AZP_WORK             | Work directory                                                                                                                           | `_work`                | No        |
+| DEPLOYMENT_AGENT     | Indicate if the agent should be configured as a deployment agent by setting the value as `"true"`                                        | N/A                    | Optional  |
+| DEPLOYMENT_POOLNAME  | The deployment pool that the agent should be added to, if `DEPLOYMENT_AGENT` value is `"true"`                                           | N/A                    | Optional  |
 
 Note: `AZP_POOL` does not need to be specified, if the agent is a deployment agent. But instead a valid deployment pool must already be created within the organisation.

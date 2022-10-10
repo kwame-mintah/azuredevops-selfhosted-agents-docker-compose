@@ -3,7 +3,7 @@ version: '3.9'
 # Assumption has been made that all agents in this docker-compose
 # will be used within the same organisation.
 x-shared-azp-envs: &shared-azp-envs
-  AZP_URL: ${AZP_URL:-https://dev.azure.com/k-space}
+  AZP_URL: ${AZP_URL}
   AZP_TOKEN: ${AZP_TOKEN}
 
 services:

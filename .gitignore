@@ -1,2 +1,5 @@
 # Directory environment variables
 .envrc
+
+## Environvariable variables
+.env
