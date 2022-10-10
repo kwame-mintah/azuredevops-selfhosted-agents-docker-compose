@@ -1,0 +1,31 @@
+version: '3.9'
+
+# Assumption has been made that all agents in this docker-compose
+# will be used within the same organisation.
+x-shared-azp-envs: &shared-azp-envs
+  AZP_URL: ${AZP_URL:-https://dev.azure.com/k-space}
+  AZP_TOKEN: ${AZP_TOKEN}
+
+services:
+  automation-agent1:
+    image: ${DOCKER_AGENT}:${DOCKER_AGENT_TAG:-latest}
+    env_file:
+      - .env
+    environment:
+      <<: *shared-azp-envs
+      AZP_AGENT_NAME: ${AGENT1_AZP_AGENT_NAME:-automation-agent1}
+      AZP_POOL: ${AUTOMATION_AGENT1_AZP_POOL:-Default}
+      AZP_WORK: ${AUTOMATION1_AZP_WORK:-_work}
+    restart: unless-stopped
+
+  deployment-agent1:
+    image: ${DOCKER_AGENT}:${DOCKER_AGENT_TAG:-latest}
+    env_file:
+      - .env
+    environment:
+      <<: *shared-azp-envs
+      AZP_AGENT_NAME: ${DEPLOYMENT_AGENT1_AZP_AGENT_NAME:-deployment-agent1}
+      AZP_WORK: ${DEPLOYMENT_AGENT1_AZP_WORK:-_work}
+      DEPLOYMENT_POOLNAME: ${DEPLOYMENT_POOLNAME_AGENT1}
+      DEPLOYMENT_AGENT: "true"
+    restart: unless-stopped
