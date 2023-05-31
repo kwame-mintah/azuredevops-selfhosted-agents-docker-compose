@@ -42,3 +42,9 @@ The following environment variables are used for the services.
 | DEPLOYMENT_POOLNAME  | The deployment pool that the agent should be added to, if `DEPLOYMENT_AGENT` value is `"true"`                                           | N/A                    | Optional  |
 
 Note: `AZP_POOL` does not need to be specified, if the agent is a deployment agent. But instead a valid deployment pool must already be created within the organisation.
+
+## Installing additionally command line utilities
+
+If you're running into issues installing additional command line tools through your pipeline. It's possible to update the `Dockerfile` to install the tool during the docker build
+of the image. For example [ArchiveFiles@2](https://learn.microsoft.com/en-us/azure/devops/pipelines/tasks/reference/archive-files-v2?view=azure-pipelines) may fail due to `zip` due
+to command not found error, in which case you can add it to the list of `apt-get install` so you can use the `zip` command with the Azure Pipeline task.
