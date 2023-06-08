@@ -48,3 +48,5 @@ Note: `AZP_POOL` does not need to be specified, if the agent is a deployment age
 If you're running into issues installing additional command line tools through your pipeline. It's possible to update the `Dockerfile` to install the tool during the docker build
 of the image. For example [ArchiveFiles@2](https://learn.microsoft.com/en-us/azure/devops/pipelines/tasks/reference/archive-files-v2?view=azure-pipelines) may fail due to `zip` due
 to command not found error, in which case you can add it to the list of `apt-get install` so you can use the `zip` command with the Azure Pipeline task.
+
+The proposed option assumes that that all agents need `zip` cli installed. Alternatively, If there is only one job that requires a command, you can install it via bash script in the pipeline e.g. `apt-get install zip -y --allow-change-held-packages`, this should download and install the cli.
