@@ -8,7 +8,7 @@ x-shared-azp-envs: &shared-azp-envs
 
 services:
   automation-agent1:
-    image: ${DOCKER_AGENT}:${DOCKER_AGENT_TAG:-latest}
+    image: ${AZURE_AGENT}:${AZURE_AGENT_TAG:-latest}
     env_file:
       - .env
     environment:
@@ -19,7 +19,7 @@ services:
     restart: unless-stopped
 
   deployment-agent1:
-    image: ${DOCKER_AGENT}:${DOCKER_AGENT_TAG:-latest}
+    image: ${AZURE_AGENT}:${AZURE_AGENT_TAG:-latest}
     env_file:
       - .env
     environment:

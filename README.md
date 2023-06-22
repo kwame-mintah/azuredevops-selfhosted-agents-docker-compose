@@ -15,7 +15,7 @@ Launch self-hosted agents in Azure DevOps using docker-compose. Although a guide
 2. Copy `.env.example` and create a new `.env` file and assign environment variable values,
 3. Build the agent docker image:
 
-   `docker build -t dockeragent:latest .`
+   `docker build -t azureagent:latest .`
 
 4. Start the agents / services:
 
