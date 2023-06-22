@@ -50,3 +50,13 @@ of the image. For example [ArchiveFiles@2](https://learn.microsoft.com/en-us/azu
 to command not found error, in which case you can add it to the list of `apt-get install` so you can use the `zip` command with the Azure Pipeline task.
 
 The proposed option assumes that that all agents need `zip` cli installed. Alternatively, If there is only one job that requires a command, you can install it via bash script in the pipeline e.g. `apt-get install zip -y --allow-change-held-packages`, this should download and install the cli.
+
+
+## Failed to fetch packages during job run
+
+When attempting to fetch new *or* updated packages during a job run but fails due to:
+```console
+Err:4 http://ports.ubuntu.com/ubuntu-ports focal-updates/main arm64 binutils-common arm64 2.34-6ubuntu1.5
+  404  Not Found [IP: 185.125.190.36 80]
+```
+This happens because a cached Docker is used. The cached image wouldn't have the latest repository information and requires having to rebuild the image again.
